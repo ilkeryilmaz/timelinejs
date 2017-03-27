@@ -1,0 +1,7 @@
+# misc
+.tmp
+.DS_Store
+.sass-cache
+
+# dependencies
+node_modules

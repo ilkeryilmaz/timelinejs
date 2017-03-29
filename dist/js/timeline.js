@@ -12,10 +12,12 @@
 			self.$elem = $(elem);
 			self.dom = $('body');
 			self.wrapClass = '.'+self.$elem.attr('class').split(' ').join('.');
+			self.dotsItem = self.wrapClass + " .timeline-dots li";
 			self.options = $.extend({}, $.fn.Timeline.options, self.$elem.data(), options);
 
 			self.create_timeline();
 		},
+
 
 		// Load Timeline
 		// ----------------------------------------------------------------
@@ -37,9 +39,10 @@
 			return total;
 		},
 
-		// Get Next Item Index
+
+		// Get Current Item Index
 		// ----------------------------------------------------------------
-		get_next : function(){
+		get_current : function(){
 			var self = this;
 			var nextItem;
 
@@ -55,20 +58,33 @@
 		},
 
 
+		// Get Next Item Index
+		// ----------------------------------------------------------------
+		get_next : function(){
+			var self = this;
+			return self.get_current() + 1;
+		},
+
+
+		// Get Prev Item Index
+		// ----------------------------------------------------------------
+		get_prev : function(){
+			var self = this;
+			return self.get_current() - 1;
+		},
 
 
 		// Watch Timeline Events
 		// ----------------------------------------------------------------
 		watch_events : function(){
 			var self = this;
-			var dotsItem = self.wrapClass + " .timeline-dots li";
 
 			// Dots Click
-			$(document.body).on('click',dotsItem, function(e){
+			$(document.body).on('click',self.dotsItem, function(e){
 				self.options.startItem = $(this).index() + 1;
-				$(dotsItem).removeClass(self.options.activeClass);
+				$(self.dotsItem).removeClass(self.options.activeClass);
 				$(this).addClass(self.options.activeClass);
-				self.change_timeline(self.get_next());
+				self.change_timeline(self.get_current());
 			});
 		},
 
@@ -83,7 +99,7 @@
 			$(self.wrapClass + ' .timeline-list-wrap').width(totalWidth);
 
 			if (self.options.mode == 'horizontal') {
-				var leftTotal = -(width * self.get_next());
+				var leftTotal = -(width * self.get_current());
 				$(self.wrapClass + ' .timeline-list-wrap').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
 		},
@@ -100,25 +116,12 @@
 			$(self.wrapClass + ' .timeline-dots').width(totalWidth);
 
 			if (self.options.mode == 'horizontal') {
-				var leftTotal = -(width * self.get_next()) - (-itemWidth / 3);
+				var leftTotal = -(width * self.get_current()) - (-itemWidth / 3);
 				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
 
 		},
 
-
-		// Build Timeline Dom
-		// ----------------------------------------------------------------
-		build_ui : function(){
-			var self = this;
-			var timelineItem = $('.' + self.options.itemClass, self.$elem);
-
-			// Timeline AddClass
-			timelineItem.removeClass(self.options.activeClass,self.options.nextClass,self.options.prevClass);
-			timelineItem.eq(self.get_next()).addClass(self.options.activeClass);
-			timelineItem.eq(self.get_next() - 1).addClass(self.options.prevClass);
-			timelineItem.eq(self.get_next() + 1).addClass(self.options.nextClass);
-		},
 
 
 		// Build Timeline Dom
@@ -131,22 +134,12 @@
 			self.$elem.children().wrapAll('<div class="timeline-list-wrap"/>').parent();
 			self.$elem.children().wrap('<div class="timeline-list"/>').parent();
 
-			$('.' + self.options.itemClass, self.$elem).eq(self.get_next()).addClass(self.options.activeClass);
+			$('.' + self.options.itemClass, self.$elem).eq(self.get_current()).addClass(self.options.activeClass);
 
 			self.timelime_calculations();
-			self.build_ui();
+			self.update_ui();
 		},
 
-
-		// Timeline Change
-		// ----------------------------------------------------------------
-		change_timeline : function(){
-			var self = this;
-
-			self.timelime_calculations();
-			self.dots_calculations();
-			self.build_ui();
-		},
 
 
 		// Build Dots List
@@ -164,11 +157,65 @@
 			}
 
 			self.$dots = dot.appendTo(self.$elem);
-			self.$dots.find('li').eq(self.get_next()).addClass(self.options.activeClass);
 			$(self.wrapClass + ' .timeline-dots').wrapAll('<div class="timeline-dots-wrap"/>').parent();
 
 			self.dots_calculations();
-			console.log(self.get_next());
+			self.update_ui();
+		},
+
+		// Item Markup Class Update
+		// ----------------------------------------------------------------
+		update_ui : function(){
+			var self = this;
+			var timelineItem = $('.' + self.options.itemClass, self.$elem);
+			var timelineDot = $(self.dotsItem);
+
+			// Timeline Item UI
+			timelineItem
+				.removeClass(self.options.activeClass)
+				.removeClass(self.options.prevClass)
+				.removeClass(self.options.nextClass)
+
+			timelineItem
+				.eq(self.get_current())
+				.addClass(self.options.activeClass);
+
+			timelineItem
+				.eq(self.get_prev())
+				.addClass(self.options.prevClass);
+
+			timelineItem
+				.eq(self.get_next())
+				.addClass(self.options.nextClass);
+
+
+			// Timeline Dots UI
+			timelineDot
+				.removeClass(self.options.activeClass)
+				.removeClass(self.options.prevClass)
+				.removeClass(self.options.nextClass)
+
+			timelineDot
+				.eq(self.get_current())
+				.addClass(self.options.activeClass);
+
+			timelineDot
+				.eq(self.get_prev())
+				.addClass(self.options.prevClass);
+
+			timelineDot
+				.eq(self.get_next())
+				.addClass(self.options.nextClass);
+		},
+
+		// Timeline Change
+		// ----------------------------------------------------------------
+		change_timeline : function(){
+			var self = this;
+
+			self.timelime_calculations();
+			self.dots_calculations();
+			self.update_ui();
 		},
 	}
 
@@ -197,7 +244,7 @@
 
 		// CONTROLS
 		customPaging: function(slider, date) {
-      return $('<button type="button" data-role="none" role="button" />').text(date);
+      return $('<button type="button" role="button" />').text(date);
     },
 	};
 

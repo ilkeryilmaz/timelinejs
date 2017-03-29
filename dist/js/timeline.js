@@ -37,6 +37,24 @@
 			return total;
 		},
 
+		// Get Next Item Index
+		// ----------------------------------------------------------------
+		get_next : function(){
+			var self = this;
+			var nextItem;
+
+			if (self.options.startItem == 'first') {
+				nextItem = 0;
+			} else if (self.options.startItem == 'last') {
+				nextItem = self.get_count() - 1;
+			} else {
+				nextItem = self.options.startItem - 1;
+			}
+
+			return nextItem;
+		},
+
+
 
 
 		// Watch Timeline Events
@@ -47,10 +65,10 @@
 
 			// Dots Click
 			$(document.body).on('click',dotsItem, function(e){
-				self.options.startItem = $(this).index()
+				self.options.startItem = $(this).index() + 1;
 				$(dotsItem).removeClass(self.options.activeClass);
 				$(this).addClass(self.options.activeClass);
-				self.change_timeline(self.options.startItem);
+				self.change_timeline(self.get_next());
 			});
 		},
 
@@ -65,7 +83,7 @@
 			$(self.wrapClass + ' .timeline-list-wrap').width(totalWidth);
 
 			if (self.options.mode == 'horizontal') {
-				var leftTotal = -(width * self.options.startItem);
+				var leftTotal = -(width * self.get_next());
 				$(self.wrapClass + ' .timeline-list-wrap').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
 		},
@@ -82,7 +100,7 @@
 			$(self.wrapClass + ' .timeline-dots').width(totalWidth);
 
 			if (self.options.mode == 'horizontal') {
-				var leftTotal = -(width * self.options.startItem) - (-itemWidth / 3);
+				var leftTotal = -(width * self.get_next()) - (-itemWidth / 3);
 				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
 
@@ -97,9 +115,9 @@
 
 			// Timeline AddClass
 			timelineItem.removeClass(self.options.activeClass,self.options.nextClass,self.options.prevClass);
-			timelineItem.eq(self.options.startItem).addClass(self.options.activeClass);
-			timelineItem.eq(self.options.startItem - 1).addClass(self.options.prevClass);
-			timelineItem.eq(self.options.startItem + 1).addClass(self.options.nextClass);
+			timelineItem.eq(self.get_next()).addClass(self.options.activeClass);
+			timelineItem.eq(self.get_next() - 1).addClass(self.options.prevClass);
+			timelineItem.eq(self.get_next() + 1).addClass(self.options.nextClass);
 		},
 
 
@@ -113,7 +131,7 @@
 			self.$elem.children().wrapAll('<div class="timeline-list-wrap"/>').parent();
 			self.$elem.children().wrap('<div class="timeline-list"/>').parent();
 
-			$('.' + self.options.itemClass, self.$elem).eq(self.options.startItem).addClass(self.options.activeClass);
+			$('.' + self.options.itemClass, self.$elem).eq(self.get_next()).addClass(self.options.activeClass);
 
 			self.timelime_calculations();
 			self.build_ui();
@@ -146,10 +164,11 @@
 			}
 
 			self.$dots = dot.appendTo(self.$elem);
-			self.$dots.find('li').eq(self.options.startItem).addClass(self.options.activeClass);
+			self.$dots.find('li').eq(self.get_next()).addClass(self.options.activeClass);
 			$(self.wrapClass + ' .timeline-dots').wrapAll('<div class="timeline-dots-wrap"/>').parent();
 
 			self.dots_calculations();
+			console.log(self.get_next());
 		},
 	}
 
@@ -174,7 +193,7 @@
 		activeClass: 'slide-active',
 		prevClass: 'slide-prev',
 		nextClass: 'slide-next',
-		startItem: 0, // first|last|number
+		startItem: 'first', // first|last|number
 
 		// CONTROLS
 		customPaging: function(slider, date) {

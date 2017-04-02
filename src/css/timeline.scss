@@ -10,7 +10,7 @@ $item-width: 800px;
 
 
 
-// Modaal Structure
+// Timeline Structure
 // --------------------------------------------------------
 .timeline {
   width: 100%;
@@ -48,10 +48,18 @@ $item-width: 800px;
 // --------------------------------------------------------
 .timeline-dots-wrap {
   position: absolute;
+  bottom: 0;
   width: 100%;
   height: 32px;
-  bottom: -50px;
   overflow: hidden;
+
+  &.bottom {
+    bottom: -50px;
+  }
+
+  &.top {
+    top: -50px;
+  }
 }
 
 .timeline-dots {
@@ -111,7 +119,7 @@ $item-width: 800px;
 
 .timeline-theme-2 {
   width: 600px;
-  margin: 100px auto
+  margin: 200px auto
 }
 .timeline-2 {
   .timeline-list {

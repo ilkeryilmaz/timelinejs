@@ -58,27 +58,15 @@
     padding-bottom: 15px;
     background: url("../img/date-icon.png") bottom no-repeat; }
 
-.timeline-theme-1 {
+.timeline-container {
   width: 800px;
   margin: 100px auto; }
 
-.timeline-1 .timeline-list {
+.timeline-list {
   width: 800px; }
 
-.timeline-1 .timeline-item {
+.timeline-item {
   width: 800px;
   height: 400px;
-  background: #ddd; }
-
-.timeline-theme-2 {
-  width: 600px;
-  margin: 200px auto; }
-
-.timeline-2 .timeline-list {
-  width: 600px; }
-
-.timeline-2 .timeline-item {
-  width: 600px;
-  height: 250px;
-  background: #dacece;
-  text-align: center; }
+  padding: 10px;
+  border: 1px solid #ddd; }

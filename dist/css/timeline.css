@@ -26,10 +26,14 @@
 
 .timeline-dots-wrap {
   position: absolute;
+  bottom: 0;
   width: 100%;
   height: 32px;
-  bottom: -50px;
   overflow: hidden; }
+  .timeline-dots-wrap.bottom {
+    bottom: -50px; }
+  .timeline-dots-wrap.top {
+    top: -50px; }
 
 .timeline-dots {
   margin: 0;
@@ -54,27 +58,14 @@
     padding-bottom: 15px;
     background: url("../img/date-icon.png") bottom no-repeat; }
 
-.timeline-theme-1 {
+.timeline-container {
   width: 800px;
   margin: 100px auto; }
 
-.timeline-1 .timeline-list {
+.timeline .timeline-list {
   width: 800px; }
 
-.timeline-1 .timeline-item {
+.timeline .timeline-item {
   width: 800px;
   height: 400px;
   background: #ddd; }
-
-.timeline-theme-2 {
-  width: 600px;
-  margin: 100px auto; }
-
-.timeline-2 .timeline-list {
-  width: 600px; }
-
-.timeline-2 .timeline-item {
-  width: 600px;
-  height: 250px;
-  background: #dacece;
-  text-align: center; }

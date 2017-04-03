@@ -2,3 +2,29 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box; }
+
+.timeline-theme-1 {
+  width: 800px;
+  margin: 100px auto; }
+
+.timeline-1 .timeline-list {
+  width: 800px; }
+
+.timeline-1 .timeline-item {
+  width: 800px;
+  height: 400px;
+  background: #ddd;
+  border: none; }
+
+.timeline-theme-2 {
+  width: 600px;
+  margin: 200px auto; }
+
+.timeline-2 .timeline-list {
+  width: 600px; }
+
+.timeline-2 .timeline-item {
+  width: 600px;
+  height: 250px;
+  border: 2px solid #dacece;
+  text-align: center; }

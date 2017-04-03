@@ -99,36 +99,18 @@ $item-width: 800px;
 // Custom Theme
 // --------------------------------------------------------
 
-.timeline-theme-1 {
+.timeline-container {
+  width: $item-width;
+  margin: 100px auto;
+}
+
+.timeline-list {
   width: 800px;
-  margin: 100px auto
 }
 
-.timeline-1 {
-  .timeline-list {
-    width: 800px;
-  }
-
-  .timeline-item {
-    width: $item-width;
-    height: 400px;
-    background: #ddd
-  }
-}
-
-
-.timeline-theme-2 {
-  width: 600px;
-  margin: 200px auto
-}
-.timeline-2 {
-  .timeline-list {
-    width: 600px;
-  }
-  .timeline-item {
-    width: 600px;
-    height: 250px;
-    background: #dacece;
-    text-align: center;
-  }
+.timeline-item {
+  width: $item-width;
+  height: 400px;
+  padding: 10px;
+  border: 1px solid #ddd
 }

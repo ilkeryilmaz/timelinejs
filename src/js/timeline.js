@@ -95,7 +95,7 @@
 			var self = this;
 
 			var width = $(self.wrapClass + ' .timeline-list').width();
-			var totalWidth = $(self.wrapClass + ' .' +self.options.itemClass).width() * (self.get_count());
+			var totalWidth = $(self.wrapClass + ' .' +self.options.itemClass).outerWidth(true) * (self.get_count());
 			$(self.wrapClass + ' .timeline-list-wrap').width(totalWidth);
 
 			if (self.options.mode == 'horizontal') {
@@ -109,7 +109,7 @@
 		// ----------------------------------------------------------------
 		dots_calculations : function(){
 			var self = this;
-			var width = $(self.wrapClass + ' .timeline-dots li').width();
+			var width = $(self.wrapClass + ' .timeline-dots li').outerWidth(true);
 			var itemWidth = $(self.wrapClass + ' .timeline-list').width();
 
 			var totalWidth = width * (self.get_count());

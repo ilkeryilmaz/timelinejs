@@ -3,3 +3,44 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+
+
+// Demo Theme
+// --------------------------------------------------------
+
+.timeline-theme-1 {
+  width: 800px;
+  margin: 100px auto
+}
+
+.timeline-1 {
+  .timeline-list {
+    width: 800px;
+  }
+
+  .timeline-item {
+    width: 800px;
+    height: 400px;
+    background: #ddd;
+    border: none;
+  }
+}
+
+
+.timeline-theme-2 {
+  width: 600px;
+  margin: 200px auto
+}
+
+.timeline-2 {
+  .timeline-list {
+    width: 600px;
+  }
+  .timeline-item {
+    width: 600px;
+    height: 250px;
+    border: 2px solid #dacece;
+    text-align: center;
+  }
+}

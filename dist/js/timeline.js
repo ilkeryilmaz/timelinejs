@@ -120,6 +120,26 @@
 				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
 
+			self.dots_position();
+
+		},
+
+
+		// Dots Position
+		// ----------------------------------------------------------------
+		dots_position : function(){
+			var self = this;
+			var dotsWrap = $(self.wrapClass + ' .timeline-dots-wrap')
+
+
+			if (self.options.mode == 'horizontal') {
+				if (self.options.dotsPosition == 'top') {
+					dotsWrap.addClass('top')
+				}else {
+					dotsWrap.addClass('bottom')
+				}
+			}
+
 		},
 
 
@@ -241,6 +261,7 @@
 		prevClass: 'slide-prev',
 		nextClass: 'slide-next',
 		startItem: 'first', // first|last|number
+		dotsPosition: 'bottom', // bottom | top
 
 		// CONTROLS
 		customPaging: function(slider, date) {

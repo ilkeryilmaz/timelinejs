@@ -46,9 +46,9 @@
 			var self = this;
 			var nextItem;
 
-			if (self.options.startItem == 'first') {
+			if (self.options.startItem === 'first') {
 				nextItem = 0;
-			} else if (self.options.startItem == 'last') {
+			} else if (self.options.startItem === 'last') {
 				nextItem = self.get_count() - 1;
 			} else {
 				nextItem = self.options.startItem - 1;
@@ -95,10 +95,10 @@
 			var self = this;
 
 			var width = $(self.wrapClass + ' .timeline-list').width();
-			var totalWidth = $(self.wrapClass + ' .' +self.options.itemClass).outerWidth(true) * (self.get_count());
+			var totalWidth = $(self.wrapClass + ' .' +self.options.itemClass).outerWidth() * (self.get_count());
 			$(self.wrapClass + ' .timeline-list-wrap').width(totalWidth);
 
-			if (self.options.mode == 'horizontal') {
+			if (self.options.mode === 'horizontal') {
 				var leftTotal = -(width * self.get_current());
 				$(self.wrapClass + ' .timeline-list-wrap').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
@@ -115,8 +115,8 @@
 			var totalWidth = width * (self.get_count());
 			$(self.wrapClass + ' .timeline-dots').width(totalWidth);
 
-			if (self.options.mode == 'horizontal') {
-				var leftTotal = -(width * self.get_current()) - (-itemWidth / 3);
+			if (self.options.mode === 'horizontal') {
+				var leftTotal = -(width * self.get_current()) - (-itemWidth / 2);
 				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
 			}
 
@@ -132,8 +132,8 @@
 			var dotsWrap = $(self.wrapClass + ' .timeline-dots-wrap')
 
 
-			if (self.options.mode == 'horizontal') {
-				if (self.options.dotsPosition == 'top') {
+			if (self.options.mode === 'horizontal') {
+				if (self.options.dotsPosition === 'top') {
 					dotsWrap.addClass('top')
 				}else {
 					dotsWrap.addClass('bottom')

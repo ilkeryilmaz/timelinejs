@@ -1,7 +1,7 @@
 /*!
 	Timeline - v0.0.1
 	ilker Yılmaz
-	https://github.com/ilkeryilmaz/timeline
+	https://github.com/ilkeryilmaz/timelinejs
  */
 
 ( function( $ ) {
@@ -265,8 +265,8 @@
 
 		// CONTROLS
 		customPaging: function(slider, date) {
-      return $('<button type="button" role="button" />').text(date);
-    },
+			return $('<button type="button" role="button" />').text(date);
+    	},
 	};
 
 } ( jQuery, window, document ) );

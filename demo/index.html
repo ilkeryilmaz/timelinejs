@@ -667,7 +667,7 @@ $('.timeline-1').Timeline();
 
 
           <div class="section-list-box">
-            <h3>Dots Position Top</h3>
+            <h3>Dots Position and Custom Item Class Example:</h3>
 <pre class="prettyprint lang-js">
 $('.timeline-2').Timeline({
   itemClass: 'box-item',
@@ -677,7 +677,7 @@ $('.timeline-2').Timeline({
 </pre>
             <div class="timeline-container timeline-theme-2">
               <div class="timeline timeline-small-box timeline-2">
-                <div class="theme-1" data-time="1">1</div>
+                <div class="theme-1" data-time="10">1</div>
                 <div class="theme-2" data-time="2">2</div>
                 <div class="theme-3" data-time="3">3</div>
                 <div class="theme-4" data-time="4">4</div>
@@ -690,6 +690,31 @@ $('.timeline-2').Timeline({
               </div>
             </div><!-- /.timeline-container -->
           </div><!-- /.section-list-box -->
+
+
+					<div class="section-list-box">
+						<h3>Mode Vertical Example:</h3>
+						<pre class="prettyprint lang-js">
+$('.timeline-2').Timeline({
+  mode: 'vertical',
+  itemClass: 'box-item',
+});
+</pre>
+						<div class="timeline-container timeline-theme-2">
+							<div class="timeline timeline-small-box timeline-3">
+								<div class="theme-1" data-time="2008">1</div>
+								<div class="theme-2" data-time="2009">2</div>
+								<div class="theme-3" data-time="2010">3</div>
+								<div class="theme-4" data-time="2011">4</div>
+								<div class="theme-5" data-time="2012">5</div>
+								<div class="theme-1" data-time="2013">6</div>
+								<div class="theme-3" data-time="2014">7</div>
+								<div class="theme-4" data-time="2015">8</div>
+								<div class="theme-6" data-time="2016">9</div>
+								<div class="theme-5" data-time="2017">10</div>
+							</div>
+						</div><!-- /.timeline-container -->
+					</div><!-- /.section-list-box -->
 
         </div>
       </section>
@@ -792,28 +817,34 @@ $('.timeline-2').Timeline({
 
 
 
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
-    <!-- Demo Page -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
-	<script src="js/prettify.js"></script>
-	<script src="js/demo.js"></script>
+		<!-- Demo Page -->
+		<script async defer src="https://buttons.github.io/buttons.js"></script>
+		<script src="js/prettify.js"></script>
+		<script src="js/demo.js"></script>
 
-    <!-- Timeline -->
-    <script src="../src/js/timeline.js" type="text/javascript"></script>
-    <script type="text/javascript">
-      $(function(){
-        // Demo 1
-		$('.timeline-1').Timeline();
+		<!-- Timeline -->
+		<script src="../src/js/timeline.js" type="text/javascript"></script>
+		<script type="text/javascript">
+			$(function(){
+				// Demo 1
+				$('.timeline-1').Timeline();
 
 
-		// Demo 2
-		$('.timeline-2').Timeline({
-            itemClass: 'box-item',
-			dotsPosition: 'top',
-            startItem: 'last'
-        });
-      });
-    </script>
+				// Demo 2
+				$('.timeline-2').Timeline({
+					itemClass: 'box-item',
+					dotsPosition: 'top',
+					startItem: 'last'
+				});
+
+				// Demo 2
+				$('.timeline-3').Timeline({
+					mode: 'vertical',
+					itemClass: 'box-item'
+				});
+			});
+		</script>
   </body>
 </html>

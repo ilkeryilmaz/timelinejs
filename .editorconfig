@@ -1,7 +1,12 @@
-root=true
+root = true
 
 [*]
-indent_style=tab
-indent_size=2
-end_of_line=lf
-charset=utf-8
+charset = utf-8
+end_of_line = lf
+indent_size = 2
+indent_style = tab
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false

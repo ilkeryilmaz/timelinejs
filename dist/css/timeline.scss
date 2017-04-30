@@ -11,6 +11,8 @@ $item-width: 800px;
 $transition-time: 1s;
 $transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 
+$dots-item-width: 35px;
+
 
 // Timeline Mixins
 // --------------------------------------------------------
@@ -21,6 +23,7 @@ $transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     clear: both;
   }
 }
+
 
 
 // Timeline Structure
@@ -65,10 +68,18 @@ $transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
 // --------------------------------------------------------
 .timeline-dots-wrap {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 32px;
   overflow: hidden;
+
+	.timeline-horizontal &{
+		width: 100%;
+		height: $dots-item-width;
+	}
+
+	.timeline-vertical &{
+		width: $dots-item-width + 30px;
+		height: 100%;
+		top: 0;
+	}
 
   &.bottom {
     bottom: -50px;
@@ -77,6 +88,14 @@ $transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   &.top {
     top: -50px;
   }
+
+	&.left {
+		left: -65px;
+	}
+
+	&.right {
+		right: -70px;
+	}
 }
 
 .timeline-dots {
@@ -85,16 +104,30 @@ $transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
   position: relative;
   width: 100%;
   height: 100%;
-  background: url('../img/timeline-bg.png') bottom repeat-x;
   transition: transform $transition-time $transition-ease;
 
+	.timeline-horizontal &{
+		background: url('../img/timeline-bg.png') bottom repeat-x;
+	}
+
+	.timeline-vertical & {
+		background: url('../img/timeline-vertical-bg.png') left repeat-y;
+	}
+
   li {
-    float: left;
-    width: 50px;
     transition: all $transition-time $transition-ease;
     list-style: none;
-    text-align: center;
     overflow: hidden;
+
+		.timeline-horizontal &{
+			float: left;
+			width: 50px;
+			text-align: center;
+		}
+
+		.timeline-vertical &{
+			width: 100%;
+		}
 
     &.slide-active {
       button {
@@ -110,9 +143,18 @@ $transition-ease: cubic-bezier(0.455, 0.03, 0.515, 0.955);
     outline: none;
     color: #333;
     font-size: 12px;
-    padding-bottom: 15px;
-    background: url('../img/date-icon.png') bottom no-repeat;
     transition: all $transition-time $transition-ease;
+
+
+		.timeline-horizontal & {
+			background: url('../img/date-icon.png') bottom no-repeat;
+			padding-bottom: 15px;
+		}
+
+		.timeline-vertical & {
+			background: url("../img/date-icon-vertical.png") left no-repeat;
+			padding-left: 15px;
+		}
   }
 }
 

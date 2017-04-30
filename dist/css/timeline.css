@@ -38,14 +38,22 @@
 
 .timeline-dots-wrap {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 32px;
   overflow: hidden; }
+  .timeline-horizontal .timeline-dots-wrap {
+    width: 100%;
+    height: 35px; }
+  .timeline-vertical .timeline-dots-wrap {
+    width: 65px;
+    height: 100%;
+    top: 0; }
   .timeline-dots-wrap.bottom {
     bottom: -50px; }
   .timeline-dots-wrap.top {
     top: -50px; }
+  .timeline-dots-wrap.left {
+    left: -65px; }
+  .timeline-dots-wrap.right {
+    right: -70px; }
 
 .timeline-dots {
   margin: 0;
@@ -53,15 +61,21 @@
   position: relative;
   width: 100%;
   height: 100%;
-  background: url("../img/timeline-bg.png") bottom repeat-x;
   transition: transform 1s cubic-bezier(0.455, 0.03, 0.515, 0.955); }
+  .timeline-horizontal .timeline-dots {
+    background: url("../img/timeline-bg.png") bottom repeat-x; }
+  .timeline-vertical .timeline-dots {
+    background: url("../img/timeline-vertical-bg.png") left repeat-y; }
   .timeline-dots li {
-    float: left;
-    width: 50px;
     transition: all 1s cubic-bezier(0.455, 0.03, 0.515, 0.955);
     list-style: none;
-    text-align: center;
     overflow: hidden; }
+    .timeline-horizontal .timeline-dots li {
+      float: left;
+      width: 50px;
+      text-align: center; }
+    .timeline-vertical .timeline-dots li {
+      width: 100%; }
     .timeline-dots li.slide-active button {
       color: #2972ca;
       font-size: 15px; }
@@ -71,9 +85,13 @@
     outline: none;
     color: #333;
     font-size: 12px;
-    padding-bottom: 15px;
-    background: url("../img/date-icon.png") bottom no-repeat;
     transition: all 1s cubic-bezier(0.455, 0.03, 0.515, 0.955); }
+    .timeline-horizontal .timeline-dots button {
+      background: url("../img/date-icon.png") bottom no-repeat;
+      padding-bottom: 15px; }
+    .timeline-vertical .timeline-dots button {
+      background: url("../img/date-icon-vertical.png") left no-repeat;
+      padding-left: 15px; }
 
 .timeline-container {
   width: 800px;

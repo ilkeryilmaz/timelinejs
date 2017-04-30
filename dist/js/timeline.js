@@ -5,13 +5,14 @@
  */
 
 ( function( $ ) {
-	var Timeline = {
-		init : function(options, elem) {
+	var Timeline;
+	Timeline = {
+		init: function (options, elem) {
 			var self = this;
 
 			self.$elem = $(elem);
 			self.dom = $('body');
-			self.wrapClass = '.'+self.$elem.attr('class').split(' ').join('.');
+			self.wrapClass = '.' + self.$elem.attr('class').split(' ').join('.');
 			self.dotsItem = self.wrapClass + " .timeline-dots li";
 			self.options = $.extend({}, $.fn.Timeline.options, self.$elem.data(), options);
 
@@ -21,7 +22,7 @@
 
 		// Load Timeline
 		// ----------------------------------------------------------------
-		create_timeline : function(){
+		create_timeline: function () {
 			var self = this;
 
 			self.build_out();
@@ -32,7 +33,7 @@
 
 		// Get Total Items
 		// ----------------------------------------------------------------
-		get_count : function(){
+		get_count: function () {
 			var self = this;
 
 			var total = $('.' + self.options.itemClass, self.$elem).length;
@@ -42,7 +43,7 @@
 
 		// Get Current Item Index
 		// ----------------------------------------------------------------
-		get_current : function(){
+		get_current: function () {
 			var self = this;
 			var nextItem;
 
@@ -60,7 +61,7 @@
 
 		// Get Next Item Index
 		// ----------------------------------------------------------------
-		get_next : function(){
+		get_next: function () {
 			var self = this;
 			return self.get_current() + 1;
 		},
@@ -68,7 +69,7 @@
 
 		// Get Prev Item Index
 		// ----------------------------------------------------------------
-		get_prev : function(){
+		get_prev: function () {
 			var self = this;
 			return self.get_current() - 1;
 		},
@@ -76,11 +77,11 @@
 
 		// Watch Timeline Events
 		// ----------------------------------------------------------------
-		watch_events : function(){
+		watch_events: function () {
 			var self = this;
 
 			// Dots Click
-			$(document.body).on('click',self.dotsItem, function(e){
+			$(document.body).on('click', self.dotsItem, function (e) {
 				self.options.startItem = $(this).index() + 1;
 				$(self.dotsItem).removeClass(self.options.activeClass);
 				$(this).addClass(self.options.activeClass);
@@ -88,54 +89,110 @@
 			});
 		},
 
+		// Change Slide Action
+		// ----------------------------------------------------------------
+		change_slide: function (type) {
+			var self = this;
+			var itemSize,
+					totalHeight;
+
+			var currentWrapper = $(self.wrapClass + ' .timeline-list-wrap');
+			var currentItem = $(self.wrapClass + ' .' + self.options.itemClass);
+
+			if (type === 'vertical'){
+				itemSize = $(self.wrapClass + ' .timeline-list').height();
+				totalHeight = currentItem.outerHeight() * (self.get_count());
+				currentWrapper.height(totalHeight);
+			}else {
+				itemSize = $(self.wrapClass + ' .timeline-list').width();
+				totalHeight = currentItem.outerWidth() * (self.get_count());
+				currentWrapper.width(totalHeight);
+			}
+
+			var getTranslate = -(itemSize * self.get_current());
+
+			if (type === 'vertical'){
+				currentWrapper.css({"transform": "translate3d(0px," + getTranslate + "px, 0px)"});
+			}else {
+				currentWrapper.css({"transform": "translate3d(" + getTranslate + "px, 0px, 0px)"});
+			}
+
+		},
 
 		// Make Timeline Calculations
 		// ----------------------------------------------------------------
-		timelime_calculations : function(){
+		timelime_calculations: function () {
 			var self = this;
 
-			var width = $(self.wrapClass + ' .timeline-list').width();
-			var totalWidth = $(self.wrapClass + ' .' +self.options.itemClass).outerWidth() * (self.get_count());
-			$(self.wrapClass + ' .timeline-list-wrap').width(totalWidth);
-
-			if (self.options.mode === 'horizontal') {
-				var leftTotal = -(width * self.get_current());
-				$(self.wrapClass + ' .timeline-list-wrap').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
+			if (self.options.mode === 'vertical') {
+				self.change_slide('vertical');
+			} else {
+				self.change_slide('horizontal');
 			}
 		},
 
+		// Change Dots Action
+		// ----------------------------------------------------------------
+		change_dots: function (type) {
+			var self = this;
+
+			var itemSize,
+				listSize;
+
+			var dotsWrapper = $(self.wrapClass + ' .timeline-list');
+			var currentItem = $(self.wrapClass + ' .timeline-dots li');
+
+			if (type === 'vertical'){
+				itemSize = currentItem.outerHeight(true);
+				listSize = dotsWrapper.height();
+			}else {
+				itemSize = currentItem.outerWidth(true);
+				listSize = dotsWrapper.width();
+			}
+
+			var getTranslate = -(itemSize * self.get_current()) - (-listSize / 2);
+
+			if (type === 'vertical'){
+				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(0px," + getTranslate + "px, 0px)"});
+			}else {
+				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + getTranslate + "px, 0px, 0px)"});
+			}
+
+		},
 
 		// Make Timeline Dots Calculations
 		// ----------------------------------------------------------------
-		dots_calculations : function(){
+		dots_calculations: function () {
 			var self = this;
-			var width = $(self.wrapClass + ' .timeline-dots li').outerWidth(true);
-			var itemWidth = $(self.wrapClass + ' .timeline-list').width();
 
-			var totalWidth = width * (self.get_count());
-			$(self.wrapClass + ' .timeline-dots').width(totalWidth);
 
-			if (self.options.mode === 'horizontal') {
-				var leftTotal = -(width * self.get_current()) - (-itemWidth / 2);
-				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + leftTotal + "px, 0px, 0px)"});
+			if (self.options.mode === 'vertical') {
+				self.change_dots('vertical');
+			} else {
+				self.change_dots('horizontal');
 			}
 
 			self.dots_position();
-
 		},
 
 
 		// Dots Position
 		// ----------------------------------------------------------------
-		dots_position : function(){
+		dots_position: function () {
 			var self = this;
 			var dotsWrap = $(self.wrapClass + ' .timeline-dots-wrap')
 
 
-			if (self.options.mode === 'horizontal') {
+			if (self.options.mode === 'vertical') {
+				if (self.options.dotsPosition === 'right') {
+					dotsWrap.addClass('right');
+				} else {
+					dotsWrap.addClass('left')
+				}
+			} else {
 				if (self.options.dotsPosition === 'top') {
-					dotsWrap.addClass('top')
-				}else {
+					dotsWrap.addClass('top');
+				} else {
 					dotsWrap.addClass('bottom')
 				}
 			}
@@ -143,13 +200,12 @@
 		},
 
 
-
 		// Build Timeline Dom
 		// ----------------------------------------------------------------
-		build_out : function(){
+		build_out: function () {
 			var self = this;
 
-			self.$elem.addClass('timeline-initialized');
+			self.$elem.addClass('timeline-' + self.options.mode + '').addClass('timeline-initialized')
 			self.$elem.children().addClass(self.options.itemClass);
 			self.$elem.children().wrapAll('<div class="timeline-list-wrap"/>').parent();
 			self.$elem.children().wrap('<div class="timeline-list"/>').parent();
@@ -161,19 +217,18 @@
 		},
 
 
-
 		// Build Dots List
 		// ----------------------------------------------------------------
-		build_dots : function(){
+		build_dots: function () {
 			var self = this;
-			var dot,itemDate;
+			var dot, itemDate;
 
 			dot = $('<ul />').addClass('timeline-dots');
 
 
 			for (i = 0; i <= (self.get_count() - 1); i += 1) {
-				 itemDate = $(self.wrapClass + ' .' + self.options.itemClass).eq(i).data('time');
-				 dot.append($('<li />').append(self.options.customPaging.call(this, self, itemDate)));
+				itemDate = $(self.wrapClass + ' .' + self.options.itemClass).eq(i).data('time');
+				dot.append($('<li />').append(self.options.customPaging.call(this, self, itemDate)));
 			}
 
 			self.$dots = dot.appendTo(self.$elem);
@@ -185,7 +240,7 @@
 
 		// Item Markup Class Update
 		// ----------------------------------------------------------------
-		update_ui : function(){
+		update_ui: function () {
 			var self = this;
 			var timelineItem = $('.' + self.options.itemClass, self.$elem);
 			var timelineDot = $(self.dotsItem);
@@ -230,14 +285,14 @@
 
 		// Timeline Change
 		// ----------------------------------------------------------------
-		change_timeline : function(){
+		change_timeline: function () {
 			var self = this;
 
 			self.timelime_calculations();
 			self.dots_calculations();
 			self.update_ui();
 		},
-	}
+	};
 
 	// jQuery method
 	// ------------------------------------------------------------
@@ -266,7 +321,7 @@
 		// CONTROLS
 		customPaging: function(slider, date) {
 			return $('<button type="button" role="button" />').text(date);
-    	},
+		},
 	};
 
 } ( jQuery, window, document ) );

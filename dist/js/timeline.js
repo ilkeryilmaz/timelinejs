@@ -139,25 +139,29 @@
 			var itemSize,
 				listSize;
 
-			var dotsWrapper = $(self.wrapClass + ' .timeline-list');
+			var listWrapper = $(self.wrapClass + ' .timeline-list');
 			var currentItem = $(self.wrapClass + ' .timeline-dots li');
+			var dotsWrapper = $(self.wrapClass + ' .timeline-dots');
 
 			if (type === 'vertical'){
 				itemSize = currentItem.outerHeight(true);
-				listSize = dotsWrapper.height();
+				listSize = listWrapper.height();
 			}else {
 				itemSize = currentItem.outerWidth(true);
-				listSize = dotsWrapper.width();
+				listSize = listWrapper.width();
 			}
 
 			var getTranslate = -(itemSize * self.get_current()) - (-listSize / 2);
+			var totalSize = itemSize * (self.get_count());
+
 
 			if (type === 'vertical'){
-				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(0px," + getTranslate + "px, 0px)"});
+				dotsWrapper.height(totalSize);
+				dotsWrapper.css({"transform": "translate3d(0px," + getTranslate + "px, 0px)"});
 			}else {
-				$(self.wrapClass + ' .timeline-dots').css({"transform": "translate3d(" + getTranslate + "px, 0px, 0px)"});
+				dotsWrapper.width(totalSize);
+				dotsWrapper.css({"transform": "translate3d(" + getTranslate + "px, 0px, 0px)"});
 			}
-
 		},
 
 		// Make Timeline Dots Calculations

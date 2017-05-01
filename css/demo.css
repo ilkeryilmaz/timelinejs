@@ -3,8 +3,8 @@
   padding: 0;
   box-sizing: border-box; }
 
-body,
-html {
+html,
+body {
   overflow-x: hidden; }
 
 html {
@@ -82,9 +82,6 @@ code {
     font-size: 2rem;
     color: #4A2AB2; }
 
-.section-list-box h3 {
-  margin-bottom: 1rem; }
-
 .section-list-box:not(:last-child) {
   border-bottom: 1px solid #dddddd;
   margin: 3rem 0;
@@ -108,6 +105,9 @@ code {
     border-top: 1px solid #eceeef; }
   .table code {
     display: table; }
+
+.row-large {
+  width: 50%; }
 
 .footer-wrapper {
   padding: 1rem 0;

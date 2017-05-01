@@ -85,6 +85,9 @@ gulp.task('copy-to-dist', function() {
 	gulp.src('src/css/timeline.scss')
 		.pipe(gulp.dest('dist/css/'));
 
+	gulp.src('src/img/*')
+		.pipe(gulp.dest('dist/img/'));
+
 	gulp.src('src/css/timeline.css')
 		.pipe(gulp.dest('dist/css/'))
 		.pipe(notify({

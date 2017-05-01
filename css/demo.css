@@ -3,8 +3,8 @@
   padding: 0;
   box-sizing: border-box; }
 
-html,
-body {
+body,
+html {
   overflow-x: hidden; }
 
 html {
@@ -82,6 +82,9 @@ code {
     font-size: 2rem;
     color: #4A2AB2; }
 
+.section-list-box h3 {
+  margin-bottom: 1rem; }
+
 .section-list-box:not(:last-child) {
   border-bottom: 1px solid #dddddd;
   margin: 3rem 0;
@@ -118,7 +121,8 @@ code {
   margin: 100px auto; }
 
 .timeline-1 .timeline-list {
-  width: 800px; }
+  width: 800px;
+  height: 350px; }
 
 .timeline-1 .timeline-item {
   width: 800px;
@@ -151,7 +155,8 @@ code {
   margin: 70px auto auto; }
 
 .timeline-small-box .timeline-list {
-  width: 600px; }
+  width: 600px;
+  height: 250px; }
 
 .timeline-small-box .box-item {
   float: left;

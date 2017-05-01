@@ -10,9 +10,8 @@ $color-second: #23A5E9;
 }
 
 
-
-html,
-body {
+body,
+html {
   overflow-x: hidden;
 }
 
@@ -107,10 +106,16 @@ code {
   }
 
   h2 {
-	margin-bottom: 1.25rem;
-	font-size: 2rem;
-	color: $color-primary;
+		margin-bottom: 1.25rem;
+		font-size: 2rem;
+		color: $color-primary;
   }
+}
+
+.section-list-box {
+	h3 {
+		margin-bottom: 1rem;
+	}
 }
 
 .section-list-box:not(:last-child) {
@@ -173,6 +178,7 @@ code {
 .timeline-1 {
   .timeline-list {
     width: 800px;
+		height: 350px;
   }
 
   .timeline-item {
@@ -219,6 +225,7 @@ code {
 .timeline-small-box {
   .timeline-list {
     width: 600px;
+		height: 250px;
   }
   .box-item {
     float: left;

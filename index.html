@@ -690,6 +690,30 @@ $('.timeline-2').Timeline({
             </div><!-- /.timeline-container -->
           </div><!-- /.section-list-box -->
 
+            <div class="section-list-box">
+                <h3>Mode Vertical Example:</h3>
+                <pre class="prettyprint lang-js">
+$('.timeline-2').Timeline({
+  mode: 'vertical',
+  itemClass: 'box-item',
+});
+</pre>
+                <div class="timeline-container timeline-theme-2">
+                    <div class="timeline timeline-small-box timeline-3">
+                        <div class="theme-1" data-time="2008">1</div>
+                        <div class="theme-2" data-time="2009">2</div>
+                        <div class="theme-3" data-time="2010">3</div>
+                        <div class="theme-4" data-time="2011">4</div>
+                        <div class="theme-5" data-time="2012">5</div>
+                        <div class="theme-1" data-time="2013">6</div>
+                        <div class="theme-3" data-time="2014">7</div>
+                        <div class="theme-4" data-time="2015">8</div>
+                        <div class="theme-6" data-time="2016">9</div>
+                        <div class="theme-5" data-time="2017">10</div>
+                    </div>
+                </div><!-- /.timeline-container -->
+            </div><!-- /.section-list-box -->
+
         </div>
       </section>
 
@@ -701,8 +725,8 @@ $('.timeline-2').Timeline({
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Type</th>
                 <th>Default</th>
+                <th>Type</th>
                 <th>Info</th>
               </tr>
             </thead>
@@ -748,8 +772,12 @@ $('.timeline-2').Timeline({
                 <td>
                   <code>'bottom'</code>
                   <code>'top'</code>
+                  <code>'left'</code>
+                  <code>'right'</code>
                 </td>
-                <td>Sets the location of the timeline dates.</td>
+                <td>Sets the location of the timeline dates. Top and bottom are only used in horizontal position. Also left and
+                  right are only used vertical position.
+                </td>
               </tr>
               <tr>
                 <td>activeClass</td>
@@ -811,6 +839,12 @@ $('.timeline-2').Timeline({
             itemClass: 'box-item',
 			dotsPosition: 'top',
             startItem: 'last'
+        });
+
+        // Demo 3
+        $('.timeline-3').Timeline({
+            mode: 'vertical',
+            itemClass: 'box-item'
         });
       });
     </script>

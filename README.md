@@ -1,6 +1,7 @@
 # jQuery Timeline Plugin
 jQuery timeline plugin, easily creates a timeline.
 
+![screenshoot](https://raw.githubusercontent.com/ilkeryilmaz/timelinejs/master/demo/img/example.png)
 
 Getting Started:
 -------

@@ -106,6 +106,9 @@ code {
   .table code {
     display: table; }
 
+.row-large {
+  width: 50%; }
+
 .footer-wrapper {
   padding: 1rem 0;
   color: #fff;

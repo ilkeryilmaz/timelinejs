@@ -5,7 +5,6 @@
  */
 
 ( function( $ ) {
-	var Timeline;
 	Timeline = {
 		init: function (options, elem) {
 			var self = this;
@@ -89,6 +88,7 @@
 			});
 		},
 
+
 		// Change Slide Action
 		// ----------------------------------------------------------------
 		change_slide: function (type) {
@@ -119,6 +119,7 @@
 
 		},
 
+
 		// Make Timeline Calculations
 		// ----------------------------------------------------------------
 		timelime_calculations: function () {
@@ -130,6 +131,7 @@
 				self.change_slide('horizontal');
 			}
 		},
+
 
 		// Change Dots Action
 		// ----------------------------------------------------------------
@@ -163,6 +165,7 @@
 				dotsWrapper.css({"transform": "translate3d(" + getTranslate + "px, 0px, 0px)"});
 			}
 		},
+
 
 		// Make Timeline Dots Calculations
 		// ----------------------------------------------------------------
@@ -242,6 +245,7 @@
 			self.update_ui();
 		},
 
+
 		// Item Markup Class Update
 		// ----------------------------------------------------------------
 		update_ui: function () {
@@ -287,6 +291,7 @@
 				.addClass(self.options.nextClass);
 		},
 
+
 		// Timeline Change
 		// ----------------------------------------------------------------
 		change_timeline: function () {
@@ -297,6 +302,7 @@
 			self.update_ui();
 		},
 	};
+
 
 	// jQuery method
 	// ------------------------------------------------------------

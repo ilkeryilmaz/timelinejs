@@ -64,6 +64,11 @@ code {
   font-size: 90%;
   background-color: #f6f8fa;
   border-radius: .25rem;
+
+	.pln,
+	.pun{
+		color: $color-primary;
+	}
 }
 
 // Header
@@ -105,6 +110,10 @@ code {
   @media (min-width: 576px) {
     border-radius: 1rem;
   }
+
+	a {
+		color: $color-primary;
+	}
 
   h2 {
 	margin-bottom: 1.25rem;

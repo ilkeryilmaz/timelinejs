@@ -3,17 +3,20 @@ jQuery timeline plugin, easily creates a timeline.
 
 ![screenshoot](https://raw.githubusercontent.com/ilkeryilmaz/timelinejs/master/demo/img/example.png)
 
-Getting Started:
--------
+## Getting Started
 
+#### 1.1. Installation with Package Managers
 Timeline.js is now setup and ready to be used with [Bower](https://bower.io/) and [NPM](https://www.npmjs.com/package/timelinejs-slider) and can be installed using the following commands.
 
 ```shell
 bower install timelinejs-slider
+```
 
+```shell
 npm install timelinejs-slider
 ```
 
+#### 1.2. The Basics
 Include the jQuery library and plugin:
 
 ```html
@@ -52,7 +55,7 @@ $(function(){
 ```
 
 
-Options:
+## Options
 
 _Available options listed below._
 ```js
@@ -85,18 +88,16 @@ $('.timeline').Timeline({
 ```
 
 
-Demo
--------
+## Demo
 
 https://ilkeryilmaz.github.io/timelinejs/
 
 
-Tasks 
--------
+## Tasks 
 
 - [x] ~~Basic plugin~~
 - [x] ~~Demo page and documentation~~
 - [ ] Mouse drag and touch support
 - [ ] Mobile support
 - [ ] Next/prev button
-- [ ] Advanced features (date slider, autoplay etc.)
+- [ ] Advanced features (date slider, ~~autoplay~~.)

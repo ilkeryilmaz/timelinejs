@@ -1,0 +1,21 @@
+{
+  "name": "timelinejs",
+  "description": "jQuery timeline plugin, easily creates a timeline.",
+	"main": [
+		"dist/css/timeline.min.css",
+		"dist/js/timeline.min.js"
+	],
+	"authors": "ilker Yılmaz - ilkoylmz@gmail.com",
+	"license": "MIT",
+  "homepage": "https://github.com/ilkeryilmaz/timelinejs",
+	"ignore": [
+		"demo",
+		"src",
+		".editorconfig",
+		".gitignore",
+		"gulpfile.js",
+		"README.md",
+		"index.html",
+		"package.json"
+	]
+}

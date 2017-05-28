@@ -15,6 +15,11 @@
 			self.dotsItem = self.wrapClass + " .timeline-dots li";
 			self.options = $.extend({}, $.fn.Timeline.options, self.$elem.data(), options);
 
+			self.initials = {
+				autoPlayTimer: null,
+				direction: self.options.startItem !== 'last' ?  0 : 1
+			};
+
 			self.create_timeline();
 		},
 
@@ -51,7 +56,7 @@
 			} else if (self.options.startItem === 'last') {
 				nextItem = self.get_count() - 1;
 			} else {
-				nextItem = self.options.startItem - 1;
+				nextItem = self.options.startItem;
 			}
 
 			return nextItem;
@@ -81,17 +86,108 @@
 
 			// Dots Click
 			$(document.body).on('click', self.dotsItem, function (e) {
-				self.options.startItem = $(this).index() + 1;
-				$(self.dotsItem).removeClass(self.options.activeClass);
-				$(this).addClass(self.options.activeClass);
-				self.change_timeline(self.get_current());
+				var clickItem = $(this).index();
+
+				self.autoplay_clear();
+				self.change_slide('click', clickItem);
+			});
+
+			// Autoplay Start
+			self.autoplay_init();
+
+			// Content Autoplay Pause
+			if(self.options.pauseOnHover) {
+				self.content_pause('item');
+			}
+
+			// Dots Autoplay Pause
+			if(self.options.pauseOnDotsHover) {
+				self.content_pause('dots');
+			}
+		},
+
+
+		// Autoplay
+		// ----------------------------------------------------------------
+		autoplay: function () {
+			var self = this;
+			self.autoplay_clear();
+
+			self.initials.autoPlayTimer = setInterval(function() {
+				self.change_slide();
+			}, self.options.autoplaySpeed);
+		},
+
+
+		// Autoplay Start
+		// ----------------------------------------------------------------
+		autoplay_init: function () {
+			var self = this;
+
+			if(self.options.autoplay) {
+				self.autoplay();
+			}
+		},
+
+		// Content Slide Pause
+		// ----------------------------------------------------------------
+		content_pause: function (type) {
+			var self = this;
+			var currentItem;
+
+			if(type === 'dots'){
+				currentItem = self.wrapClass + ' .' + self.options.dotsClass;
+			}else {
+				currentItem = self.wrapClass + ' .' + self.options.itemClass;
+			}
+
+			$(document.body).on('mouseenter', currentItem, function (e) {
+				self.autoplay_clear();
+			});
+
+			$(document.body).on('mouseleave', currentItem, function (e) {
+				self.autoplay_init();
 			});
 		},
 
 
-		// Change Slide Action
+		// Autoplay Clear
 		// ----------------------------------------------------------------
-		change_slide: function (type) {
+		autoplay_clear: function () {
+			var self = this;
+
+			if(self.initials.autoPlayTimer) {
+				clearInterval(self.initials.autoPlayTimer);
+			}
+		},
+
+
+		// Change Slide (default, reverse, click);
+		// ----------------------------------------------------------------
+		change_slide: function (type, itemIndex) {
+			var self = this;
+			if(!type) type='load';
+
+			if (type === 'click'){
+				self.options.startItem = itemIndex;
+				self.autoplay_init();
+			}else {
+				if (self.get_count() - 1 > self.get_current() && self.initials.direction === 0){
+					self.options.startItem = self.get_next();
+				}else if(self.get_current() > 0 && self.initials.direction === 1) {
+					self.options.startItem = self.get_next();
+				}else {
+					self.autoplay_clear();
+				}
+			}
+
+			self.change_timeline();
+		},
+
+
+		// Move Slide Action
+		// ----------------------------------------------------------------
+		move_slide: function (type) {
 			var self = this;
 			var itemSize,
 					totalHeight;
@@ -116,7 +212,6 @@
 			}else {
 				currentWrapper.css({"transform": "translate3d(" + getTranslate + "px, 0px, 0px)"});
 			}
-
 		},
 
 
@@ -126,16 +221,16 @@
 			var self = this;
 
 			if (self.options.mode === 'vertical') {
-				self.change_slide('vertical');
+				self.move_slide('vertical');
 			} else {
-				self.change_slide('horizontal');
+				self.move_slide('horizontal');
 			}
 		},
 
 
-		// Change Dots Action
+		// Move Dots Action
 		// ----------------------------------------------------------------
-		change_dots: function (type) {
+		move_dots: function (type) {
 			var self = this;
 
 			var itemSize,
@@ -174,9 +269,9 @@
 
 
 			if (self.options.mode === 'vertical') {
-				self.change_dots('vertical');
+				self.move_dots('vertical');
 			} else {
-				self.change_dots('horizontal');
+				self.move_dots('horizontal');
 			}
 
 			self.dots_position();
@@ -257,7 +352,7 @@
 			timelineItem
 				.removeClass(self.options.activeClass)
 				.removeClass(self.options.prevClass)
-				.removeClass(self.options.nextClass)
+				.removeClass(self.options.nextClass);
 
 			timelineItem
 				.eq(self.get_current())
@@ -276,7 +371,7 @@
 			timelineDot
 				.removeClass(self.options.activeClass)
 				.removeClass(self.options.prevClass)
-				.removeClass(self.options.nextClass)
+				.removeClass(self.options.nextClass);
 
 			timelineDot
 				.eq(self.get_current())
@@ -319,6 +414,8 @@
 	// ------------------------------------------------------------
 	$.fn.Timeline.options = {
 		// GENERAL
+		autoplay: false,
+		autoplaySpeed: 3000,
 		mode: 'horizontal', // vertical
 		itemClass: 'timeline-item',
 		dotsClass: 'timeline-dots',
@@ -326,7 +423,10 @@
 		prevClass: 'slide-prev',
 		nextClass: 'slide-next',
 		startItem: 'first', // first|last|number
-		dotsPosition: 'bottom', // bottom | top
+		dotsPosition: 'bottom', // bottom | top,
+		pauseOnHover: true,
+		pauseOnDotsHover: false,
+
 
 		// CONTROLS
 		customPaging: function(slider, date) {

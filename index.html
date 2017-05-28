@@ -691,25 +691,26 @@ $('.timeline-2').Timeline({
           </div><!-- /.section-list-box -->
 
             <div class="section-list-box">
-                <h3>Mode Vertical Example:</h3>
+                <h3>Mode Vertical and Autoplay Example:</h3>
                 <pre class="prettyprint lang-js">
 $('.timeline-2').Timeline({
+  autoplay: true,
   mode: 'vertical',
   itemClass: 'box-item',
 });
 </pre>
                 <div class="timeline-container timeline-theme-2">
                     <div class="timeline timeline-small-box timeline-3">
-                        <div class="theme-1" data-time="2008">1</div>
-                        <div class="theme-2" data-time="2009">2</div>
-                        <div class="theme-3" data-time="2010">3</div>
-                        <div class="theme-4" data-time="2011">4</div>
+                        <div class="theme-2" data-time="2008">1</div>
+                        <div class="theme-6" data-time="2009">2</div>
+                        <div class="theme-4" data-time="2010">3</div>
+                        <div class="theme-1" data-time="2011">4</div>
                         <div class="theme-5" data-time="2012">5</div>
                         <div class="theme-1" data-time="2013">6</div>
                         <div class="theme-3" data-time="2014">7</div>
                         <div class="theme-4" data-time="2015">8</div>
                         <div class="theme-6" data-time="2016">9</div>
-                        <div class="theme-5" data-time="2017">10</div>
+                        <div class="theme-3" data-time="2017">10</div>
                     </div>
                 </div><!-- /.timeline-container -->
             </div><!-- /.section-list-box -->
@@ -731,6 +732,23 @@ $('.timeline-2').Timeline({
               </tr>
             </thead>
             <tbody>
+              <tr>
+                <td>autoplay</td>
+                <td><code>false</code></td>
+                <td>
+                    <code>true</code>
+                    <code>false</code>
+                </td>
+                <td>Enables Autoplay</td>
+              </tr>
+              <tr>
+                <td>autoplaySpeed</td>
+                <td><code>3000</code></td>
+                <td>
+                    <code>int(ms)</code>
+                </td>
+                <td>Autoplay Speed in milliseconds</td>
+              </tr>
               <tr>
                 <td>mode</td>
                 <td><code>'horizontal'</code></td>
@@ -803,6 +821,24 @@ $('.timeline-2').Timeline({
                 </td>
                 <td>Timeline items and dates next class</td>
               </tr>
+              <tr>
+                <td>pauseOnHover</td>
+                <td><code>true</code></td>
+                <td>
+                  <code>true</code>
+                  <code>false</code>
+                </td>
+                <td>Pause Autoplay On Hover</td>
+              </tr>
+              <tr>
+                <td>pauseOnDotsHover</td>
+                <td><code>false</code></td>
+                <td>
+                  <code>true</code>
+                  <code>false</code>
+                </td>
+                <td>Pause Autoplay when a dot is hovered</td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -843,6 +879,7 @@ $('.timeline-2').Timeline({
 
         // Demo 3
         $('.timeline-3').Timeline({
+            autoplay: true,
             mode: 'vertical',
             itemClass: 'box-item'
         });

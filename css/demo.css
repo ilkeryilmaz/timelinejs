@@ -48,6 +48,9 @@ code {
   font-size: 90%;
   background-color: #f6f8fa;
   border-radius: .25rem; }
+  code .pln,
+  code .pun {
+    color: #4A2AB2; }
 
 .header-wrapper {
   padding: 5rem 0; }
@@ -77,6 +80,8 @@ code {
   @media (min-width: 576px) {
     .section-list {
       border-radius: 1rem; } }
+  .section-list a {
+    color: #4A2AB2; }
   .section-list h2 {
     margin-bottom: 1.25rem;
     font-size: 2rem;

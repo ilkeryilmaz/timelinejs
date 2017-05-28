@@ -1,8 +1,8 @@
 {
-  "name": "Timeline",
+  "name": "timelinejs-slider",
   "description": "jQuery timeline plugin, easily creates a timeline.",
   "version": "0.0.1",
-  "repository": "https://github.com/ilkeryilmaz/Timeline",
+  "repository": "https://github.com/ilkeryilmaz/timelinejs",
   "license": "MIT",
   "devDependencies": {
     "del": "^2.0.2",

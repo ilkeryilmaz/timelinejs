@@ -6,6 +6,14 @@ jQuery timeline plugin, easily creates a timeline.
 Getting Started:
 -------
 
+Timeline.js is now setup and ready to be used with [Bower](https://bower.io/) and [NPM](https://www.npmjs.com/package/timelinejs-slider) and can be installed using the following commands.
+
+```shell
+bower install timelinejs-slider
+
+npm install timelinejs-slider
+```
+
 Include the jQuery library and plugin:
 
 ```html

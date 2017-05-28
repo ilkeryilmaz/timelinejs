@@ -49,30 +49,30 @@ Options:
 _Available options listed below._
 ```js
 $('.timeline').Timeline({
-		autoplay: false,
-		// value: boolean |Enables Autoplay
-		autoplaySpeed: 3000,
-    // value: integer | Autoplay Speed in milliseconds
-    mode: 'horizontal',
-    // value: horizontal | vertical, default to horizontal
-    itemClass: 'timeline-item',
-    // value: item class
-    dotsClass: 'timeline-dots',
-    // value: dots item class
-    activeClass: 'slide-active',
-    // value: item and dots active class
-    prevClass: 'slide-prev',
-    // value: item and dots prev class
-    nextClass: 'slide-next',
-    // value: item and dots next class
-    startItem: 'first', // first|last|number
-    // value: first | last | number , default to first
-    dotsPosition: 'bottom',
-    // value: bottom | top, default to bottom
-    pauseOnHover: true,
-    // value: boolean | Pause Autoplay On Hover
-    pauseOnDotsHover: false,
-    // value: boolean | Pause Autoplay when a dot is hovered
+  autoplay: false,
+  // value: boolean | Enables Autoplay
+  autoplaySpeed: 3000,
+  // value: integer | Autoplay Speed in milliseconds
+  mode: 'horizontal',
+  // value: horizontal | vertical, default to horizontal
+  itemClass: 'timeline-item',
+  // value: item class
+  dotsClass: 'timeline-dots',
+  // value: dots item class
+  activeClass: 'slide-active',
+  // value: item and dots active class
+  prevClass: 'slide-prev',
+  // value: item and dots prev class
+  nextClass: 'slide-next',
+  // value: item and dots next class
+  startItem: 'first', // first|last|number
+  // value: first | last | number , default to first
+  dotsPosition: 'bottom',
+  // value: bottom | top, default to bottom
+  pauseOnHover: true,
+  // value: boolean | Pause Autoplay On Hover
+  pauseOnDotsHover: false,
+  // value: boolean | Pause Autoplay when a dot is hovered
 });
 ```
 

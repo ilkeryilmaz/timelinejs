@@ -97,6 +97,7 @@ https://ilkeryilmaz.github.io/timelinejs/
 
 - [x] ~~Basic plugin~~
 - [x] ~~Demo page and documentation~~
+- [ ] Migrate ES6
 - [ ] Mouse drag and touch support
 - [ ] Mobile support
 - [ ] Next/prev button

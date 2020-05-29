@@ -31,6 +31,7 @@
 
 			self.build_out();
 			self.build_dots();
+			self.build_nextPrev();
 			self.watch_events();
 		},
 
@@ -92,16 +93,38 @@
 				self.change_slide('click', clickItem);
 			});
 
+
+			if (self.options.nextPrevButtons) {
+				var $previousElement = self.$elem.find('.'+self.options.prevButtonsClass);
+				var $nextElement = self.$elem.find('.'+self.options.nextButtonsClass);
+
+				$nextElement.on('click', function (e) {
+					var nextItem = self.get_next();
+					if (nextItem < self.get_count()) {
+						self.autoplay_clear();
+						self.change_slide('click', nextItem);
+					}
+				});
+
+				$previousElement.on('click', function (e) {
+					var prevItem = self.get_prev();
+					if (prevItem >= 0) {
+						self.autoplay_clear();
+						self.change_slide('click', prevItem);
+					}
+				});
+			}
+
 			// Autoplay Start
 			self.autoplay_init();
 
 			// Content Autoplay Pause
-			if(self.options.pauseOnHover) {
+			if (self.options.pauseOnHover) {
 				self.content_pause('item');
 			}
 
 			// Dots Autoplay Pause
-			if(self.options.pauseOnDotsHover) {
+			if (self.options.pauseOnDotsHover) {
 				self.content_pause('dots');
 			}
 		},
@@ -341,6 +364,24 @@
 		},
 
 
+		// Build nextPrev buttons
+		// ----------------------------------------------------------------
+		build_nextPrev: function () {
+			var self = this;
+
+			if (!self.options.nextPrevButtons) {
+				return false;
+			}
+
+			self.$elem.append('<div class="timeline-nextPrev"><div class="timeline-nextPrev-wrap"/></div>');
+			var $container = self.$elem.find('.timeline-nextPrev-wrap');
+			$container.append('<button class="' + self.options.prevButtonsClass + '"> < </button>');
+			$container.append('<button class="' + self.options.nextButtonsClass + '"> > </button>');
+
+			self.update_ui();
+		},
+
+
 		// Item Markup Class Update
 		// ----------------------------------------------------------------
 		update_ui: function () {
@@ -384,8 +425,30 @@
 			timelineDot
 				.eq(self.get_next())
 				.addClass(self.options.nextClass);
+
+			this.update_ui_in_nextPrevButtons();
 		},
 
+		update_ui_in_nextPrevButtons: function () {
+			var self = this;
+
+			if (self.options.nextPrevButtons) {
+				var $prevButton = self.$elem.find('.' + self.options.prevButtonsClass);
+				var $nextButton = self.$elem.find('.' + self.options.nextButtonsClass);
+				var classDisable = self.options.nextButtonsDisableClass;
+
+				if (self.get_prev() < 0) {
+					$prevButton.addClass(classDisable);
+				} else {
+					$prevButton.removeClass(classDisable);
+				}
+				if ((self.get_next() + 1) > self.get_count()) {
+					$nextButton.addClass(classDisable);
+				} else {
+					$nextButton.removeClass(classDisable);
+				}
+			}
+		},
 
 		// Timeline Change
 		// ----------------------------------------------------------------
@@ -426,6 +489,10 @@
 		dotsPosition: 'bottom', // bottom | top,
 		pauseOnHover: true,
 		pauseOnDotsHover: false,
+		nextPrevButtons: true,
+		prevButtonsClass: 'timeline-prevButton',
+		nextButtonsClass: 'timeline-nextButton',
+		nextButtonsDisableClass: 'disableButton',
 
 
 		// CONTROLS

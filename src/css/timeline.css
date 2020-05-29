@@ -105,3 +105,41 @@
   height: 400px;
   padding: 10px;
   border: 1px solid #ddd; }
+
+
+.timeline-nextPrev{
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+	bottom: -93px;
+	height: 45px;
+}
+
+.timeline-nextPrev-wrap{
+	width: 100%;
+	position: absolute;
+	overflow: hidden;
+	height: 41px;
+	top: 8px;
+}
+
+.timeline-nextPrev-wrap button{
+	/*float: left;*/
+	cursor: pointer;
+	font-size: 25px;
+	position: absolute;
+}
+
+.timeline-nextPrev-wrap button.disableButton{
+	/*float: left;*/
+	cursor: auto;
+	color: #CCC;
+}
+
+.timeline-nextButton{
+	left: 30px;
+}
+
+.timeline-prevButton{
+	left: 0;
+}
